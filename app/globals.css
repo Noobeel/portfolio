@@ -6,7 +6,9 @@
     :root {
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
-
+        --backdrop: 45, 15%, 95%;
+        --active: 36, 29%, 90%;
+        
         --card: 0 0% 100%;
         --card-foreground: 222.2 84% 4.9%;
 
@@ -38,6 +40,8 @@
     .dark {
         --background: 222.2 84% 4.9%;
         --foreground: 210 40% 98%;
+        --backdrop: 233, 100%, 98%;
+        --active: 233, 100%, 98%;
 
         --card: 222.2 84% 4.9%;
         --card-foreground: 210 40% 98%;
@@ -68,9 +72,46 @@
 
 @layer base {
     * {
-        @apply border-border;
+        @apply border-border scroll-smooth;
     }
+
     body {
-        @apply bg-background text-foreground;
+        @apply text-foreground bg-background min-h-screen max-w-full overflow-x-hidden;
+    }
+
+    .home-sections {
+        @apply flex flex-col w-full h-full;
+    }
+
+    section {
+        @apply flex flex-col items-center justify-center w-full min-h-screen relative;
+    }
+
+    nav {
+        @apply backdrop-blur-sm bg-white/10 flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10;
+    }
+
+    .nav-list {
+        @apply relative list-none flex justify-center items-center;
+    }
+
+    .nav-item {
+        @apply flex z-20;
+    }
+
+    .nav-link {
+        @apply font-[600] rounded-full p-2 mx-2;
+    }
+
+    .tab {
+        @apply absolute z-10 opacity-0 rounded-full bg-white/50 transition-all ease-in-out;
+    }
+
+    .visible-tab {
+        @apply inline-block opacity-100;
+    }
+
+    #hero {
+        @apply flex flex-row justify-center items-center;
     }
 }
