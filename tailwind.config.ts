@@ -8,6 +8,10 @@ module.exports = {
         "./src/**/*.{ts,tsx}",
     ],
     theme: {
+        fontFamily: {
+            'poppins': ['Poppins', 'sans-serif'],
+            'montserrat': ['Montserrat', 'sans-serif'],
+        },
         container: {
             center: true,
             padding: "2rem",
@@ -67,6 +71,16 @@ module.exports = {
                 "accordion-up": {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: 0 },
+                },
+                "scroll-down-hero": {
+                    "0%": { transformOrigin: "0% 0%", transform: "scale(1, 0)" },
+                    "50%": { transformOrigin: "0% 0%", transform: "scale(1, 1)" },
+                    "50.1%": { transformOrigin: "0% 100%", transform: "scale(1, 1)" },
+                    "100%": { transformOrigin: "0% 100%", transform: "scale(1, 0)" },
+                },
+                "char-limit-reached": {
+                    "0%, 100%": { transform: "scale(1)" },
+                    "50%": { transform: "scale(1.05)" },
                 },
             },
             animation: {
