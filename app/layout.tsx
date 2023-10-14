@@ -3,9 +3,16 @@ import type { Metadata } from 'next'
 import { Montserrat, Poppins } from 'next/font/google'
 import { ThemeProvider } from "@/components/theme-provider"
 
+const poppins = Poppins({
+    weight: ["700"],
+    subsets: ['latin'],
+    variable: '--poppins'
+})
+
 const montserrat = Montserrat({
     weight: ["400", "500", "600", "700"],
-    subsets: ['latin']
+    subsets: ['latin'],
+    variable: '--montserrat'
 })
 
 export const metadata: Metadata = {
@@ -19,9 +26,9 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={montserrat.className}>
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <html lang="en" className='snap-y snap-mandatory' suppressHydrationWarning>
+            <body className={`${poppins.variable} font-montserrat text-foreground bg-background min-h-screen max-w-full overflow-x-hidden`}>
+                <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
                     {children}
                 </ThemeProvider>
             </body>
