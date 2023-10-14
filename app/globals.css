@@ -68,50 +68,26 @@
         --input: 217.2 32.6% 17.5%;
         --ring: 212.7 26.8% 83.9%;
     }
-}
 
-@layer base {
     * {
-        @apply border-border scroll-smooth;
-    }
-
-    body {
-        @apply text-foreground bg-background min-h-screen max-w-full overflow-x-hidden;
-    }
-
-    .home-sections {
-        @apply flex flex-col w-full h-full;
+        @apply scroll-smooth;
     }
 
     section {
-        @apply flex flex-col items-center justify-center w-full min-h-screen relative;
-    }
-
-    nav {
-        @apply backdrop-blur-sm bg-white/10 flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10;
-    }
-
-    .nav-list {
-        @apply relative list-none flex justify-center items-center;
-    }
-
-    .nav-item {
-        @apply flex z-20;
+        @apply flex flex-col items-center justify-center w-full min-h-screen relative snap-start;
     }
 
     .nav-link {
         @apply font-[600] rounded-full p-2 mx-2;
     }
+}
 
-    .tab {
-        @apply absolute z-10 opacity-0 rounded-full bg-white/50 transition-all ease-in-out;
-    }
-
+@layer utilities {
     .visible-tab {
-        @apply inline-block opacity-100;
+        @apply inline-block opacity-100 !important;
     }
 
-    #hero {
-        @apply flex flex-row justify-center items-center;
+    .char-limit-reached {
+        @apply text-red-500 animate-[char-limit-reached_0.5s_ease-in-out_forwards];
     }
 }

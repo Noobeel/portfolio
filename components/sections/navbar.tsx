@@ -1,8 +1,8 @@
 "use client"
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import DarkModeToggle from '@/components/theme-toggle'
-import { useEffect } from 'react'
 
 interface NavLink {
     [key: string]: string
@@ -11,24 +11,22 @@ interface NavLink {
 const windowEvents = ['hashchange', 'resize']
 
 const navLinks: NavLink = {
-    About: '#about',
-    Skills: '#skills',
-    Projects: '#projects',
-    Contact: '#contact',
-    Résumé: '/resume'
+    "About": '#about',
+    "Skills": '#skills',
+    "Projects": '#projects',
+    "Contact": '#contact',
+    "Résumé": '/resume'
 }
 
 export default function Navbar() {
-    
-
     const moveTabPosition = (nav_link: HTMLAnchorElement) => {
         if (nav_link) {
-            const tab = document.querySelector('.tab') as HTMLDivElement
+            const tab = document.getElementById('tab') as HTMLDivElement
             const navLinkRect = nav_link.getBoundingClientRect()
-            const navListLeftPos = document.querySelector('.nav-list')?.getBoundingClientRect().left as number
-            
+            const navListLeftPos = document.getElementById('nav-list')?.getBoundingClientRect().left as number
+
             tab.style.left = `${navLinkRect.left - navListLeftPos}px`
-            tab.style.width = `${navLinkRect.width}px`    
+            tab.style.width = `${navLinkRect.width}px`
             tab.style.height = `${navLinkRect.height}px`
 
             if (tab && !tab.classList.contains('visible-tab')) {
@@ -42,7 +40,7 @@ export default function Navbar() {
     if (typeof window !== 'undefined') {
         window.onscroll = () => {
             const sections = document.querySelectorAll('section')
-            
+
             const topOfScreen = window.scrollY
             const bottomOfScreen = topOfScreen + window.innerHeight
             const triggerHeight = window.innerHeight * 0.50
@@ -56,7 +54,7 @@ export default function Navbar() {
                     if (topOfScreen > sectionTop && topOfScreen < sectionBottom - triggerHeight) {
                         if (section.id === 'hero') {
                             window.history.pushState({}, '', '/')
-                            document.querySelector('.tab')?.classList.remove('visible-tab')
+                            document.getElementById('tab')?.classList.remove('visible-tab')
                             return
                         }
 
@@ -69,7 +67,7 @@ export default function Navbar() {
                     if (bottomOfScreen > sectionTop + triggerHeight && bottomOfScreen < sectionBottom) {
                         if (section.id === 'hero') {
                             window.history.pushState({}, '', '/')
-                            document.querySelector('.tab')?.classList.remove('visible-tab')
+                            document.getElementById('tab')?.classList.remove('visible-tab')
                             return
                         }
 
@@ -86,7 +84,7 @@ export default function Navbar() {
     }
 
     const changeTabPositionOnWindowEvent = () => {
-        document.querySelector('.tab')?.classList.remove('visible-tab')
+        document.getElementById('tab')?.classList.remove('visible-tab')
 
         setTimeout(() => {
             const hash = window.location.hash
@@ -117,18 +115,17 @@ export default function Navbar() {
     }, [])
 
     return (
-        <nav>
-            <ul className='nav-list'>
-
+        <nav className='backdrop-blur-md bg-white/10 flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10'>
+            <ul id="nav-list" className='relative list-none flex justify-center items-center'>
                 {Object.entries(navLinks).map((link, index) => (
-                    <li key={index} className='nav-item'>
+                    <li key={index} className='flex z-20'>
                         <Link className='nav-link' href={link[1]}>
                             {link[0]}
                         </Link>
                     </li>
                 ))}
 
-                <div className="tab" />
+                <div id="tab" className="absolute z-10 opacity-0 rounded-full bg-white/50 transition-all ease-in-out" />
             </ul>
 
             <DarkModeToggle />
