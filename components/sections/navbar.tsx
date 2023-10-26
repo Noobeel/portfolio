@@ -1,22 +1,12 @@
 "use client"
 
-import { useEffect } from 'react'
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { Home } from "lucide-react"
 import DarkModeToggle from '@/components/theme-toggle'
-
-interface NavLink {
-    [key: string]: string
-}
+import { navLinks } from '@/data/constants'
 
 const windowEvents = ['hashchange', 'resize']
-
-const navLinks: NavLink = {
-    "About": '#about',
-    "Skills": '#skills',
-    "Projects": '#projects',
-    "Contact": '#contact',
-    "Résumé": '/resume'
-}
 
 export default function Navbar() {
     const moveTabPosition = (nav_link: HTMLAnchorElement) => {
@@ -60,7 +50,7 @@ export default function Navbar() {
 
                         window.history.pushState({}, '', `#${section.id}`)
 
-                        const navLink = document.querySelector(`.nav-link[href="#${section.id}"]`) as HTMLAnchorElement
+                        const navLink = document.querySelector(`.nav-link[href="/#${section.id}"]`) as HTMLAnchorElement
                         moveTabPosition(navLink)
                     }
                 } else {
@@ -73,7 +63,7 @@ export default function Navbar() {
 
                         window.history.pushState({}, '', `#${section.id}`)
 
-                        const navLink = document.querySelector(`.nav-link[href="#${section.id}"]`) as HTMLAnchorElement
+                        const navLink = document.querySelector(`.nav-link[href="/#${section.id}"]`) as HTMLAnchorElement
                         moveTabPosition(navLink)
                     }
                 }
@@ -83,20 +73,24 @@ export default function Navbar() {
         }
     }
 
-    const changeTabPositionOnWindowEvent = () => {
+    const changeTabPositionOnWindowEvent = () => {        
         document.getElementById('tab')?.classList.remove('visible-tab')
 
         setTimeout(() => {
-            const hash = window.location.hash
+            if (window.location.pathname === '/resume') {
+                moveTabPosition(document.querySelector(`.nav-link[href="/resume"]`) as HTMLAnchorElement)
+            } else {
+                const hash = window.location.hash
+                
+                const element = document.querySelector(hash || '#hero') as HTMLElement
 
-            const element = document.querySelector(hash || '#hero') as HTMLElement
+                document.body.style
+                element?.scrollIntoView({ behavior: 'instant' })
 
-            document.body.style
-            element.scrollIntoView({ behavior: 'instant' })
+                if (!hash) return
 
-            if (!hash) return
-
-            moveTabPosition(document.querySelector(`.nav-link[href="${hash}"]`) as HTMLAnchorElement)
+                moveTabPosition(document.querySelector(`.nav-link[href="/${hash}"]`) as HTMLAnchorElement)
+            }
         }, 300)
     }
 
@@ -119,13 +113,19 @@ export default function Navbar() {
             <ul id="nav-list" className='relative list-none flex justify-center items-center'>
                 {Object.entries(navLinks).map((link, index) => (
                     <li key={index} className='flex z-20'>
-                        <Link className='nav-link' href={link[1]}>
-                            {link[0]}
-                        </Link>
+                        {link[0] === 'Home' ? (
+                            <Link className='nav-link' href={link[1]} onClick={ () => { document.getElementById('tab')?.classList.remove('visible-tab') }}>
+                                <Home size={24} />
+                            </Link>
+                        ) :
+                            <Link className='nav-link' href={link[1]} {...(link[0] === 'Résumé' ? { target: '_top' } : {})}>
+                                {link[0]}
+                            </Link>
+                        }
                     </li>
                 ))}
 
-                <div id="tab" className="absolute z-10 opacity-0 rounded-full bg-white/50 transition-all ease-in-out" />
+                <div id="tab" className="absolute z-10 opacity-0 rounded-full backdrop-blur-sm bg-white/50 transition-all ease-in-out" />
             </ul>
 
             <DarkModeToggle />
