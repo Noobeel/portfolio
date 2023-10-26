@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import { useToast } from "@/components/ui/use-toast"
+
 import {
   Form,
   FormControl,
@@ -39,6 +41,8 @@ const formSchema = z.object({
 })
 
 export default function Contact() {
+    const { toast } = useToast()
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,7 +53,42 @@ export default function Contact() {
     })
     
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+        const { name, email, message } = values
+
+        const data = {
+            service_id: 'service_pl5bvnw',
+            template_id: 'template_msst0eu',
+            user_id: 'W14PNvo7HMuEArA9J',
+            template_params: {
+                from_name: name,
+                from_email: email,
+                message: message,
+            },
+        }
+        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then((res) => {
+                if (res.status === 200) {
+                    form.reset()
+
+                    toast({
+                        description: "Your message has been sent successfully.",
+                        duration: 5000,
+                    })
+
+                } else {
+                    toast({
+                        variant: "destructive",
+                        description: "Oops! Something went wrong while sending your message. Please try again later.",
+                        duration: 5000,
+                    })
+                }
+            })
     }
 
     return (
@@ -107,7 +146,7 @@ export default function Contact() {
                                                     field.onChange(e)
                                                     
                                                     const charCount = e.target.value.length
-                                                    const charCountEl = document.getElementsByClassName(".message-char-count")[0]
+                                                    const charCountEl = document.getElementById("message-char-count")
                                                     const charCountContainerEl = document.getElementById("message-char-count-container")
 
                                                     // Auto-resize textarea
@@ -131,7 +170,7 @@ export default function Contact() {
                                             />
                                         </FormControl>
                                         <FormDescription id="message-char-count-container" className="mt-1 mb-2">
-                                            <span className="message-char-count">0</span>/500 characters
+                                            <span id="message-char-count">0</span>/500 characters
                                         </FormDescription>
                                         <FormMessage />
                                     </FormItem>
