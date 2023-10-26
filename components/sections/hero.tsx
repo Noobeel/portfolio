@@ -5,11 +5,12 @@ export default function Hero() {
         <section id="hero">
             <div className='flex flex-row items-center justify-center'>
                 <div className="w-1/2 h-auto flex justify-center">
-                    <Image src="/images/potrait.png"
+                    <Image src="/images/portrait.jpg"
                         alt="Picture of the author"
                         width={0}
                         height={0}
                         sizes="100vw"
+                        priority={true}
                         className="w-1/2 h-1/2 rounded-lg object-contain"
                     />
                 </div>
