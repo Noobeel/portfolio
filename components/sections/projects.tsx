@@ -1,5 +1,7 @@
+"use client"
+
 import Image from "next/image";
-import { Globe } from 'lucide-react';
+import { Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import {
     Tooltip,
     TooltipContent,
@@ -8,59 +10,132 @@ import {
 } from "@/components/ui/tooltip"
 import { projects } from '@/data/constants';
 
-export default function Projects() {
-    return (
-        <section id="projects">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-10">
-                {projects.map((project, index) => (
-                    <div key={index} className="flex flex-col items-center justify-center p-4 rounded-lg shadow-lg dark:bg-gray-800 duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-lg hover:shadow-white/20">
-                        <Image
-                            src={project.image}
-                            alt={project.title}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="rounded-lg object-contain w-full h-full"
-                        />
+import { motion, MotionConfig, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
 
-                        <div className="flex flex-col w-full h-full p-4 bg-gray-800 rounded-lg">
-                            <h1 className="text-2xl font-bold text-gray-100">{project.title}</h1>
-                            <p className="text-gray-300">{project.description}</p>
-                            
-                            <div className="flex flex-row items-center justify-between w-max mt-4">
-                                {project.github && (
-                                    <TooltipProvider delayDuration={0}>
-                                        <Tooltip>
-                                            <TooltipTrigger>
-                                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="mr-3 text-gray-300 hover:text-gray-100">
-                                                    <i className="devicon-github-plain text-4xl" />
-                                                </a>
-                                            </TooltipTrigger>
-                                            <TooltipContent side='top'>
-                                                <p>GitHub Repo</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
-                                )}
-                                {project.demo && (
-                                    <TooltipProvider delayDuration={0}>
-                                        <Tooltip>
-                                            <TooltipTrigger>
-                                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-gray-100">
-                                                    <Globe className="w-[2.25rem] h-[2.25rem]" />
-                                                </a>
-                                            </TooltipTrigger>
-                                            <TooltipContent side='top'>
-                                                <p>Demo</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
-                                )}
-                            </div>
+export default function Projects() {
+    const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+    const [isFocus, setIsFocus] = useState(false);
+
+    const handleLeftArrowClick = () => {
+        setCurrentProjectIndex((previousProjectIndex) =>
+            previousProjectIndex - 1 < 0 ? projects.length - 1 : previousProjectIndex - 1
+        );
+    }
+
+    const handleRightArrowClick = () => {
+        setCurrentProjectIndex((previousProjectIndex) =>
+            previousProjectIndex + 1 === projects.length ? 0 : previousProjectIndex + 1
+        );
+    }
+
+    return (
+        <section id="projects" className="overflow-hidden">
+            <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
+                <div className="flex items-center relative w-3/5">
+                    <AnimatePresence>
+                        {isFocus && (
+                            <motion.div
+                                className="absolute left-2 right-2 flex justify-between z-10"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onHoverStart={() => setIsFocus(true)}
+                                onHoverEnd={() => setIsFocus(false)}
+                            >
+                                <button onClick={handleLeftArrowClick} className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full shadow-lg focus:outline-none">
+                                    <ChevronLeft className="text-gray-100 text-2xl" />
+                                </button>
+                                <button onClick={handleRightArrowClick} className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full shadow-lg focus:outline-none">
+                                    <ChevronRight className="text-gray-100 text-2xl" />
+                                </button>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    <motion.div
+                        className="flex flex-nowrap w-full"
+                        initial={{ x: 0 }}
+                        animate={{ x: -currentProjectIndex * 100 + '%' }}
+                        onHoverStart={() => setIsFocus(true)}
+                        onHoverEnd={() => setIsFocus(false)}
+                    >
+                        {projects.map((project, index) => (
+                            <motion.div
+                                key={index}
+                                animate={{ opacity: index === currentProjectIndex ? 1 : 0.3, scale: index === currentProjectIndex ? 1 : 0.9 }}
+                                className="flex flex-col items-center justify-center rounded-lg shadow-lg min-w-full"
+                            >
+                                <div className="flex items-center justify-center rounded-t-lg">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        width="0"
+                                        height="0"
+                                        sizes="100vw"
+                                        style={{
+                                            width: '80%',
+                                            height: 'auto',
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full h-full p-4 bg-gray-800 rounded-b-lg">
+                                    <h1 className="text-2xl font-bold text-gray-100">{project.title}</h1>
+                                    <p className="text-gray-300">{project.description}</p>
+                                    
+                                    <div className="flex flex-row items-center justify-between w-max mt-4">
+                                        {project.github && (
+                                            <TooltipProvider delayDuration={0}>
+                                                <Tooltip>
+                                                    <TooltipTrigger>
+                                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="mr-3 text-gray-300 hover:text-gray-100">
+                                                            <i className="devicon-github-plain text-4xl" />
+                                                        </a>
+                                                    </TooltipTrigger>
+                                                    <TooltipContent side='top'>
+                                                        <p>GitHub Repo</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
+                                            </TooltipProvider>
+                                        )}
+                                        {project.demo && (
+                                            <TooltipProvider delayDuration={0}>
+                                                <Tooltip>
+                                                    <TooltipTrigger>
+                                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-gray-100">
+                                                            <Globe className="w-[2.25rem] h-[2.25rem]" />
+                                                        </a>
+                                                    </TooltipTrigger>
+                                                    <TooltipContent side='top'>
+                                                        <p>Demo</p>
+                                                    </TooltipContent>
+                                                </Tooltip>
+                                            </TooltipProvider>
+                                        )}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10">
+                        <div className="flex gap-3 px-3 py-2 bg-gray-400 rounded-full opacity-80">
+                        {[...projects].map((_, index) => (
+                            <button key={index} onClick={() => setCurrentProjectIndex(index)}>
+
+                            <div
+                                className={`w-2 h-2 rounded-full ${
+                                index === currentProjectIndex ? "bg-white" : "bg-zinc-600"
+                                }`}
+                            />
+
+                            </button>
+                        ))}
                         </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            </MotionConfig>
         </section>
     )
 }
