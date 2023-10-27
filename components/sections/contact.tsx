@@ -55,40 +55,38 @@ export default function Contact() {
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { name, email, message } = values
 
-        const data = {
-            service_id: 'service_pl5bvnw',
-            template_id: 'template_msst0eu',
-            user_id: 'W14PNvo7HMuEArA9J',
-            template_params: {
-                from_name: name,
-                from_email: email,
-                message: message,
-            },
-        }
-        fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        fetch('/api/send_email', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
-        })
-            .then((res) => {
-                if (res.status === 200) {
-                    form.reset()
+            body: JSON.stringify({ name, email, message }),
+        }).then((res) => {
+            if (res.status === 200) {
+                form.reset()
+                const charCountEl = document.getElementById("message-char-count")
+                const charCountContainerEl = document.getElementById("message-char-count-container")
+                if (charCountEl && charCountContainerEl) {
+                    if (charCountContainerEl.classList.contains("char-limit-reached")) {
+                        charCountContainerEl.classList.remove("char-limit-reached")
+                    }
 
-                    toast({
-                        description: "Your message has been sent successfully.",
-                        duration: 5000,
-                    })
-
-                } else {
-                    toast({
-                        variant: "destructive",
-                        description: "Oops! Something went wrong while sending your message. Please try again later.",
-                        duration: 5000,
-                    })
+                    charCountContainerEl.classList.add("text-muted-foreground")
+                    charCountEl.textContent = "0"
                 }
-            })
+
+                toast({
+                    description: "Your message has been sent successfully.",
+                    duration: 5000,
+                })
+            } else {
+                toast({
+                    variant: "destructive",
+                    description: "Oops! Something went wrong while sending your message. Please try again later.",
+                    duration: 5000,
+                })
+            }
+        })
     }
 
     return (
