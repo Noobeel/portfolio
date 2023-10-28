@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Montserrat, Poppins } from 'next/font/google'
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar, Socials } from '@/components/sections'
-import { useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react';
 
 const poppins = Poppins({
     weight: ["700"],
@@ -18,6 +18,12 @@ const montserrat = Montserrat({
     subsets: ['latin'],
     variable: '--montserrat'
 })
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+}
 
 export const metadata: Metadata = {
     title: 'Nabeel Asim - Portfolio',
@@ -35,10 +41,9 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
                     <Socials />
-                    
                     {children}
-
                     <Toaster />
+                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>
