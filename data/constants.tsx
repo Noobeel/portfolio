@@ -1,4 +1,4 @@
-import { Github, Linkedin, Instagram, Mail} from 'lucide-react';
+import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 
 interface NavLink {
     [key: string]: string
@@ -43,7 +43,7 @@ export const socials: Social[] = [
         icon: <Github />
     },
     {
-        name: 'LinkedIn',   
+        name: 'LinkedIn',
         url: 'https://www.linkedin.com/in/mnabeelasim/',
         icon: <Linkedin />
     },
@@ -56,16 +56,29 @@ export const socials: Social[] = [
 
 export const projects: Project[] = [
     {
-        title: 'Project 1',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
-        image: '/images/projects/placeholder.png',
-        github: 'https://github.com',
-        demo: 'https://demo.com',
+        title: 'Portfolio Website',
+        description: 'A portfolio website built using TypeScript, Next.js, Tailwind CSS. Features ShadCN UI for stunning UI components and Framer Motion for smooth animations.',
+        image: '/images/projects/portfolio.png',
+        github: 'https://github.com/Noobeel/portfolio',
+        demo: 'https://nabeelasim.net',
     },
     {
-        title: 'Project 2',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, voluptatem.',
-        image: '/images/projects/placeholder.png',
+        title: 'Project Task Management Tool',
+        description: 'A project task management tool built using Python, TypeScript, React, FastAPI, MongoDB, and Firebase. Features a REST API, user authentication, and a Kanban board.',
+        image: '/images/projects/project-task-management-tool.png',
+        github: 'https://github.com/Noobeel/University-Assignments/tree/master/Project%20Task%20Management%20Tool',
+    },
+    {
+        title: 'Document Search Engine',
+        description: 'A document search engine built using Python, NLTK, and Sklearn. Features three different search algorithms: BM25, Naive Bayes, and SVC text classification to rank documents as well as the Word2Vec model to find enhance search parameters. Searched from a corpus of over 100,000 documents with a file size of 27GB.',
+        image: '/images/projects/document-search-engine.png',
+        github: 'https://github.com/Noobeel/University-Assignments/tree/master/Search%20Engine',
+    },
+    {
+        title: 'Cypress Web Application',
+        description: 'A web application built using Python, Django, Google Maps API, and Bootstrap. Features a web interface for city residents to report issues like fallen trees, potholes, and garbage for the city to resolve.',
+        image: '/images/projects/cypress-web-application.png',
+        github: 'https://github.com/Noobeel/University-Assignments/tree/master/Cypress%20Web%20App',
     },
 ];
 
