@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { Home } from "lucide-react"
-import DarkModeToggle from '@/components/theme-toggle'
 import { navLinks } from '@/data/constants'
+import DarkModeToggle from '@/components/theme-toggle'
 
 const windowEvents = ['hashchange', 'resize']
 
@@ -73,28 +73,28 @@ export default function Navbar() {
         }
     }
 
-    const changeTabPositionOnWindowEvent = () => {        
-        document.getElementById('tab')?.classList.remove('visible-tab')
-
-        setTimeout(() => {
-            if (window.location.pathname === '/resume') {
-                moveTabPosition(document.querySelector(`.nav-link[href="/resume"]`) as HTMLAnchorElement)
-            } else {
-                const hash = window.location.hash
-                
-                const element = document.querySelector(hash || '#hero') as HTMLElement
-
-                document.body.style
-                element?.scrollIntoView({ behavior: 'instant' })
-
-                if (!hash) return
-
-                moveTabPosition(document.querySelector(`.nav-link[href="/${hash}"]`) as HTMLAnchorElement)
-            }
-        }, 300)
-    }
-
     useEffect(() => {
+        const changeTabPositionOnWindowEvent = () => {        
+            document.getElementById('tab')?.classList.remove('visible-tab')
+    
+            setTimeout(() => {
+                if (window.location.pathname === '/resume') {
+                    moveTabPosition(document.querySelector(`.nav-link[href="/resume"]`) as HTMLAnchorElement)
+                } else {
+                    const hash = window.location.hash
+                    
+                    const element = document.querySelector(hash || '#hero') as HTMLElement
+    
+                    document.body.style
+                    element?.scrollIntoView({ behavior: 'instant' })
+    
+                    if (!hash) return
+    
+                    moveTabPosition(document.querySelector(`.nav-link[href="/${hash}"]`) as HTMLAnchorElement)
+                }
+            }, 300)
+        }
+    
         windowEvents.forEach(event => {
             window.addEventListener(event, changeTabPositionOnWindowEvent)
         })
