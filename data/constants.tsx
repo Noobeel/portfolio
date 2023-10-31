@@ -20,7 +20,7 @@ interface Project {
 
 interface Skill {
     name: string,
-    icon: string
+    iconPath: string
 }
 
 export const navLinks: NavLink = {
@@ -83,86 +83,90 @@ export const projects: Project[] = [
 ];
 
 export const skills: { [key: string]: Skill[] } = {
-    ["Languages"]: [
+    "Languages": [
         {
             name: "Python",
-            icon: "python-plain",
+            iconPath: "python/python-original",
         },
         {
             name: "Java",
-            icon: "java-plain",
+            iconPath: "java/java-original",
         },
         {
             name: "PHP",
-            icon: "php-plain colored",
+            iconPath: "php/php-original",
         },
         {
             name: "JavaScript",
-            icon: "javascript-plain colored",
+            iconPath: "javascript/javascript-original",
         },
         {
             name: "TypeScript",
-            icon: "typescript-plain colored",
+            iconPath: "typescript/typescript-original",
         },
         {
             name: "HTML",
-            icon: "html5-plain colored",
+            iconPath: "html5/html5-original",
         },
         {
             name: "CSS",
-            icon: "css3-plain colored",
+            iconPath: "css3/css3-original",
         },
         {
             name: "MySQL",
-            icon: "mysql-plain colored",
+            iconPath: "mysql/mysql-original",
         },
         {
             name: "PL/SQL",
-            icon: "oracle-plain colored-plain colored",
+            iconPath: "oracle/oracle-original",
         },
         {
             name: "MongoDB",
-            icon: "mongodb-plain colored",
+            iconPath: "mongodb/mongodb-original",
         },
     ],
-    ["Frameworks"]: [
+    "Frameworks": [
         {
             name: "React",
-            icon: "react-plain colored",
+            iconPath: "react/react-original",
         },
         {
             name: "Next.js",
-            icon: "nextjs-original colored",
+            iconPath: "nextjs/nextjs-original",
         },
         {
             name: "Flask",
-            icon: "flask-original colored",
+            iconPath: "flask/flask-original",
         },
         {
             name: "Django",
-            icon: "django-plain colored",
+            iconPath: "django/django-plain",
+        },
+        {
+            name: "Tailwind CSS",
+            iconPath: "tailwindcss/tailwindcss-plain",
         },
     ],
-    ["Tools"]: [
+    "Tools": [
         {
             name: "Visual Studio Code",
-            icon: "vscode-plain colored",
+            iconPath: "vscode/vscode-original",
         },
         {
             name: "Git/GitHub",
-            icon: "github-original colored",
+            iconPath: "github/github-original",
         },
         {
             name: "Docker",
-            icon: "docker-plain colored",
+            iconPath: "docker/docker-original",
         },
         {
             name: "Atlassian JIRA",
-            icon: "jira-plain colored",
+            iconPath: "jira/jira-original",
         },
         {
             name: "Atlassian Confluence",
-            icon: "confluence-original colored",
+            iconPath: "confluence/confluence-original",
         },
     ],
 }
