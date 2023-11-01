@@ -36,7 +36,7 @@ export default function Projects() {
         if (isTouchDevice) {
             setIsFocus(true);
         }
-    }, []);
+    }, [isTouchDevice]);
 
     return (
         <section id="projects" className="overflow-hidden">
