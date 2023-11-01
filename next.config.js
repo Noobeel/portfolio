@@ -2,9 +2,26 @@
 const nextConfig = {
     async redirects() {
         return [
+            {   
+                has: [
+                    {
+                        type: 'host',
+                        value: 'resume.nabeelasim.net',
+                    },
+                ],
+                source: '/',
+                destination: '/resume',
+                permanent: true,
+            },
             {
+                has: [
+                    {
+                        type: 'host',
+                        value: 'nabeelasim.net',
+                    },
+                ],
                 source: '/resume',
-                destination: 'https://resume.nabeelasim.net/',
+                destination: 'https://resume.nabeelasim.net',
                 permanent: true,
             },
         ]
@@ -13,8 +30,14 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: 'https://resume.nabeelasim.net/',
-                destination: '/resume',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'resume.nabeelasim.net',
+                    },
+                ],
+                source: '/resume',
+                destination: '/',
             },
         ]
     }
