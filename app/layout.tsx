@@ -1,6 +1,7 @@
 import './globals.css'
 import "@/public/devicon.min.css"
 import type { Metadata } from 'next'
+import WipAlert from '@/components/wip-alert'
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from '@vercel/analytics/react';
 import { Montserrat, Poppins } from 'next/font/google'
@@ -39,11 +40,13 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className={`${poppins.variable} font-montserrat text-foreground bg-background min-h-screen max-w-full overflow-x-hidden`}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                    <WipAlert />
+                    <Analytics />
+                    <Toaster />
+
                     <Navbar />
                     <Socials />
                     {children}
-                    <Toaster />
-                    <Analytics />
                 </ThemeProvider>
             </body>
         </html>
