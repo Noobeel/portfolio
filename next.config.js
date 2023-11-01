@@ -3,12 +3,28 @@ const nextConfig = {
     async redirects() {
         return [
             {   
-                source: '/resume',
-                destination: 'https://resume.nabeelasim.net',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'resume.nabeelasim.net',
+                    },
+                ],
+                source: '/',
+                destination: '/resume',
                 permanent: true,
             },
         ]
     },
+
+    async rewrites() {
+        return [
+            {
+                source: '/resume',
+                destination: '/',
+            },
+        ]
+    }
+
 }
 
 module.exports = nextConfig
