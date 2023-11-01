@@ -1,10 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    async rewrites() {
+    async redirects() {
         return [
             {
-                source: '/resume',
-                destination: 'http://resume.nabeelasim.net/',
+                source: '/',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'resume.nabeelasim.net',
+                    }
+                ],
+                destination: '/resume',
+                permanent: true,
             },
         ]
     }
