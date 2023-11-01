@@ -28,7 +28,7 @@ export const navLinks: NavLink = {
     "About": '/#about',
     "Projects": '/#projects',
     "Contact": '/#contact',
-    "Résumé": '/resume'
+    "Résumé": 'resume.nabeelasim.net'
 }
 
 export const socials: Social[] = [
