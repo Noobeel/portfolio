@@ -3,8 +3,14 @@ const nextConfig = {
     async redirects() {
         return [
             {
-                source: '/resume',
-                destination: 'https://resume.nabeelasim.net',
+                source: '/',
+                has: [
+                    {
+                        type: 'host',
+                        value: 'resume.nabeelasim.net',
+                    }
+                ],
+                destination: '/resume',
                 permanent: true,
             },
         ]
