@@ -21,42 +21,15 @@ module.exports = {
         },
         extend: {
             colors: {
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
-                backdrop: "hsl(var(--backdrop))",
-                active: "hsl(var(--active))",
-
-                primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
-                },
-                secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
-                },
-                destructive: {
-                    DEFAULT: "hsl(var(--destructive))",
-                    foreground: "hsl(var(--destructive-foreground))",
-                },
-                muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
-                },
-                accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
-                },
-                popover: {
-                    DEFAULT: "hsl(var(--popover))",
-                    foreground: "hsl(var(--popover-foreground))",
-                },
-                card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
-                },
+                ring: "var(--ring)",
+                background: "var(--background)",
+                backdrop: "var(--backdrop)",
+                active: "var(--active)",
+                destructive: "var(--destructive)",
+                muted: "var(--muted)",
+                popover: "var(--popover)",
+                primary: "var(--primary)",
+                secondary: "var(--secondary)",
             },
             borderRadius: {
                 lg: "var(--radius)",
@@ -64,14 +37,6 @@ module.exports = {
                 sm: "calc(var(--radius) - 4px)",
             },
             keyframes: {
-                "accordion-down": {
-                    from: { height: 0 },
-                    to: { height: "var(--radix-accordion-content-height)" },
-                },
-                "accordion-up": {
-                    from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: 0 },
-                },
                 "scroll-down-hero": {
                     "0%": { transformOrigin: "0% 0%", transform: "scale(1, 0)" },
                     "50%": { transformOrigin: "0% 0%", transform: "scale(1, 1)" },
@@ -84,8 +49,8 @@ module.exports = {
                 },
             },
             animation: {
-                "accordion-down": "accordion-down 0.2s ease-out",
-                "accordion-up": "accordion-up 0.2s ease-out",
+                "scroll-down-hero": "scroll-down-hero 1.5s ease-in-out infinite",
+                "char-limit-reached": "char-limit-reached 0.5s ease-in-out forwards",
             },
         },
     },
