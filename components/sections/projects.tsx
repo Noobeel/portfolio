@@ -83,7 +83,7 @@ export default function Projects() {
                                         height="0"
                                         sizes="100vh"
                                         priority={true}
-                                        className="object-contain dark:filter dark:brightness-75"
+                                        className="object-contain dark:filter dark:brightness-[90%]"
                                         style={{
                                             width: '90%',
                                             height: '100%'
