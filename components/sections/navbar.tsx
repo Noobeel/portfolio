@@ -5,18 +5,19 @@ import { useEffect } from 'react'
 import { Home } from "lucide-react"
 import { navLinks } from '@/data/constants'
 import DarkModeToggle from '@/components/theme-toggle'
+import { motion } from 'framer-motion'
 
 const windowEvents = ['hashchange', 'resize']
 
 export default function Navbar() {
-    const moveTabPosition = (nav_link: HTMLAnchorElement) => {
-        if (nav_link) {
+    const moveTabPosition = (navLink: HTMLAnchorElement) => {
+        if (navLink) {
             const tab = document.getElementById('tab') as HTMLDivElement
-            const navLinkRect = nav_link.getBoundingClientRect()
+            const navLinkRect = navLink.getBoundingClientRect()
             const navListLeftPos = document.getElementById('nav-list')?.getBoundingClientRect().left as number
 
-            tab.style.left = `${navLinkRect.left - navListLeftPos}px`
-            tab.style.width = `${navLinkRect.width}px`
+            tab.style.left = `${navLinkRect.left - navListLeftPos - 5}px`
+            tab.style.width = `${navLinkRect.width + 10}px`
             tab.style.height = `${navLinkRect.height}px`
 
             if (tab && !tab.classList.contains('visible-tab')) {
@@ -39,6 +40,7 @@ export default function Navbar() {
                 const sectionRect = section.getBoundingClientRect()
                 const sectionTop = sectionRect.top + topOfScreen
                 const sectionBottom = sectionTop + sectionRect.height
+                const navLink = document.querySelector(`.nav-link[href="/#${section.id}"]`) as HTMLAnchorElement
 
                 if (lastScrollPos > topOfScreen) {
                     if (topOfScreen > sectionTop && topOfScreen < sectionBottom - triggerHeight) {
@@ -49,8 +51,6 @@ export default function Navbar() {
                         }
 
                         window.history.pushState({}, '', `#${section.id}`)
-
-                        const navLink = document.querySelector(`.nav-link[href="/#${section.id}"]`) as HTMLAnchorElement
                         moveTabPosition(navLink)
                     }
                 } else {
@@ -62,8 +62,6 @@ export default function Navbar() {
                         }
 
                         window.history.pushState({}, '', `#${section.id}`)
-
-                        const navLink = document.querySelector(`.nav-link[href="/#${section.id}"]`) as HTMLAnchorElement
                         moveTabPosition(navLink)
                     }
                 }
@@ -109,7 +107,12 @@ export default function Navbar() {
     }, [])
 
     return (
-        <nav className='backdrop-blur-md bg-white/10 flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10'>
+        <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
+            className='backdrop-blur-md bg-backdrop flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10'
+        >
             <ul id="nav-list" className='relative list-none flex justify-center items-center'>
                 {Object.entries(navLinks).map((link, index) => (
                     <li key={index} className='flex z-20'>
@@ -125,10 +128,10 @@ export default function Navbar() {
                     </li>
                 ))}
 
-                <div id="tab" className="absolute z-10 opacity-0 rounded-full backdrop-blur-sm bg-white/50 transition-all ease-in-out" />
+                <div id="tab" className="absolute z-10 opacity-0 rounded-full backdrop-blur-sm bg-active transition-all ease-in-out" />
             </ul>
 
             <DarkModeToggle />
-        </nav>
+        </motion.nav>
     )
 }
