@@ -5,7 +5,7 @@ import Image from "next/image"
 export default function Skills() {
     return (
         <Tabs defaultValue="languages" orientation="vertical">
-            <h1 className="font-poppins font-[700] text-center text-xl leading-tight md:text-2xl lg:text-4xl mb-5">
+            <h1 className="font-poppins font-[700] text-center text-xl leading-tight md:text-2xl lg:text-4xl mb-5 text-primary">
                 Skills
             </h1>
 

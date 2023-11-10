@@ -5,13 +5,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
 
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
@@ -51,7 +51,7 @@ export default function Contact() {
             message: "",
         },
     })
-    
+
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { name, email, message } = values
 
@@ -71,7 +71,7 @@ export default function Contact() {
                         charCountContainerEl.classList.remove("char-limit-reached")
                     }
 
-                    charCountContainerEl.classList.add("text-muted-foreground")
+                    charCountContainerEl.classList.add("text-muted")
                     charCountEl.textContent = "0"
                 }
 
@@ -93,15 +93,15 @@ export default function Contact() {
         <section id="contact">
             <div className="flex flex-col items-center justify-center w-full h-full">
                 <div className="flex flex-col items-center justify-center w-full text-center mb-5">
-                    <h2 className="font-poppins font-[700] text-xl leading-tight md:text-2xl lg:text-4xl mb-1">Contact Me</h2>
-                    <p className="font-[500] text-base leading-tight md:text-lg lg:text-xl">
+                    <h2 className="font-poppins font-[700] text-xl text-primary leading-tight md:text-2xl lg:text-4xl mb-1">Contact Me</h2>
+                    <p className="font-[500] text-secondary leading-tight md:text-lg lg:text-xl">
                         Let&apos;s connect and explore the endless possibilities.
                     </p>
                 </div>
 
                 <div className="flex flex-col items-center justify-center w-1/3 mx-auto">
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col bg-white/10 rounded-xl p-5 space-y-2 shadow-lg shadow-white/10 w-full">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col bg-slate-800 rounded-xl p-5 space-y-2 shadow-lg shadow-white/10 w-full">
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -142,7 +142,7 @@ export default function Contact() {
                                                 maxLength={500}
                                                 onChange={(e) => {
                                                     field.onChange(e)
-                                                    
+
                                                     const charCount = e.target.value.length
                                                     const charCountEl = document.getElementById("message-char-count")
                                                     const charCountContainerEl = document.getElementById("message-char-count-container")
@@ -150,18 +150,18 @@ export default function Contact() {
                                                     // Auto-resize textarea
                                                     e.target.style.height = "inherit"
                                                     e.target.style.height = `${e.target.scrollHeight}px`
-                                                    
+
                                                     if (charCountEl) {
                                                         // Update char count
                                                         charCountEl.textContent = charCount.toString()
 
                                                         // Change color of char count if limit is reached
                                                         if (charCount === 500) {
-                                                            charCountContainerEl?.classList.remove("text-muted-foreground")
+                                                            charCountContainerEl?.classList.remove("text-muted")
                                                             charCountContainerEl?.classList.add("char-limit-reached")
                                                         } else {
                                                             charCountContainerEl?.classList.remove("char-limit-reached")
-                                                            charCountContainerEl?.classList.add("text-muted-foreground")
+                                                            charCountContainerEl?.classList.add("text-muted")
                                                         }
                                                     }
                                                 }}
@@ -175,7 +175,7 @@ export default function Contact() {
                                 )}
                             />
 
-                            <Button className="w-1/4 mx-auto" type="submit">
+                            <Button className="w-1/4 mx-auto font-semibold" type="submit">
                                 Send
                             </Button>
                         </form>

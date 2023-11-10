@@ -38,7 +38,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${poppins.variable} font-montserrat text-foreground bg-background min-h-screen max-w-full overflow-x-hidden`}>
+            <body className={`${poppins.variable} font-montserrat bg-background text-primary min-h-screen max-w-full overflow-x-hidden`}>
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <WipAlert />
                     <Analytics />

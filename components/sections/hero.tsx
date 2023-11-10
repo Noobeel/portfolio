@@ -11,7 +11,7 @@ export default function Hero() {
                         height={0}
                         sizes="100vw"
                         priority={true}
-                        className="w-1/2 h-1/2 rounded-lg object-contain"
+                        className="w-1/2 h-1/2 rounded-lg object-contain dark:filter dark:brightness-[85%]"
                     />
                 </div>
 
@@ -22,8 +22,8 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-col items-center justify-center absolute w-max h-max bottom-2">
-                <span className='mb-2 text-white text-[0.75rem] font-[600] tracking-widest'>Scroll Down</span>
-                <div className="w-0 h-7 border-l-2 border-white animate-[scroll-down-hero_1.5s_ease-in-out_forwards_infinite]"></div>
+                <span className='mb-2 text-[0.75rem] font-[600] tracking-widest'>Scroll Down</span>
+                <div className="w-0 h-7 border-l-2 border-primary animate-scroll-down-hero"></div>
             </div>
         </section>
     )

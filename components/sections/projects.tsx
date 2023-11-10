@@ -52,11 +52,11 @@ export default function Projects() {
                                 onHoverStart={() => setIsFocus(true)}
                                 onHoverEnd={() => isTouchDevice ? null : setIsFocus(false)}
                             >
-                                <button onClick={handleLeftArrowClick} className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full shadow-lg focus:outline-none">
-                                    <ChevronLeft className="text-gray-100 text-2xl" />
+                                <button onClick={handleLeftArrowClick} className="flex items-center justify-center w-12 h-12 bg-background rounded-full shadow-lg focus:outline-none">
+                                    <ChevronLeft className="text-2xl" />
                                 </button>
-                                <button onClick={handleRightArrowClick} className="flex items-center justify-center w-12 h-12 bg-gray-800 rounded-full shadow-lg focus:outline-none">
-                                    <ChevronRight className="text-gray-100 text-2xl" />
+                                <button onClick={handleRightArrowClick} className="flex items-center justify-center w-12 h-12 bg-background rounded-full shadow-lg focus:outline-none">
+                                    <ChevronRight className="text-2xl" />
                                 </button>
                             </motion.div>
                         )}
@@ -73,7 +73,7 @@ export default function Projects() {
                             <motion.div
                                 key={index}
                                 animate={{ opacity: index === currentProjectIndex ? 1 : 0.3, scale: index === currentProjectIndex ? 1 : 0.9 }}
-                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-full bg-gray-800"
+                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-full bg-slate-800"
                             >
                                 <div className="flex justify-center overflow-y-hidden flex-1">
                                     <Image
@@ -83,7 +83,7 @@ export default function Projects() {
                                         height="0"
                                         sizes="100vh"
                                         priority={true}
-                                        className="object-contain"
+                                        className="object-contain dark:filter dark:brightness-75"
                                         style={{
                                             width: '90%',
                                             height: '100%'
@@ -93,16 +93,16 @@ export default function Projects() {
 
                                 <div className="flex flex-col self-end w-full px-4 pb-4 rounded-b-lg h-fit">
                                     <div className="flex flex-col items-center">
-                                        <h1 className="text-2xl font-bold text-gray-100">{project.title}</h1>
-                                        <p className="text-gray-300 mx-2">{project.description}</p>
+                                        <h1 className="text-2xl text-primary font-bold">{project.title}</h1>
+                                        <p className="mx-2 text-secondary text-lg">{project.description}</p>
                                     </div>
                                     
                                     <div className="flex flex-row items-center justify-between w-max mt-4 mx-2">
                                         {project.github && (
                                             <TooltipProvider delayDuration={0}>
                                                 <Tooltip>
-                                                    <TooltipTrigger>
-                                                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="mr-3 text-gray-300 hover:text-gray-100">
+                                                    <TooltipTrigger tabIndex={-1}>
+                                                        <a tabIndex={-1} href={project.github} target="_blank" rel="noopener noreferrer" className="mr-3 text-secondary hover:text-primary">
                                                             <i className="devicon-github-plain text-4xl" />
                                                         </a>
                                                     </TooltipTrigger>
@@ -115,8 +115,8 @@ export default function Projects() {
                                         {project.demo && (
                                             <TooltipProvider delayDuration={0}>
                                                 <Tooltip>
-                                                    <TooltipTrigger>
-                                                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-gray-100">
+                                                    <TooltipTrigger tabIndex={-1}>
+                                                        <a tabIndex={-1} href={project.demo} target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary">
                                                             <Globe className="w-[2.25rem] h-[2.25rem]" />
                                                         </a>
                                                     </TooltipTrigger>
@@ -132,17 +132,16 @@ export default function Projects() {
                         ))}
                     </motion.div>
 
-                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10">
-                        <div className="flex gap-3 px-3 py-2 bg-gray-400 rounded-full opacity-80">
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-5">
+                        <div className="flex gap-3 px-3 py-2 bg-background rounded-full opacity-80">
                         {[...projects].map((_, index) => (
                             <button key={index} onClick={() => setCurrentProjectIndex(index)}>
-
-                            <div
-                                className={`w-2 h-2 rounded-full ${
-                                index === currentProjectIndex ? "bg-white" : "bg-zinc-600"
-                                }`}
-                            />
-
+                                <div
+                                    className={
+                                        `w-2 h-2 rounded-full
+                                        ${index === currentProjectIndex ? "bg-primary" : "bg-zinc-600"}`
+                                    }
+                                />
                             </button>
                         ))}
                         </div>
