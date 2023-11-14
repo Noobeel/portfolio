@@ -28,7 +28,9 @@ export default function WipAlert() {
                     </AlertDialogTitle>
                 </AlertDialogHeader>
                 <AlertDialogDescription>
-                    This website is still a work in progress. Styling and content is subject to change.
+                    This website is still a work in progress. Currently working on the following: <br />
+                    * Responsive design for different screen sizes <br />
+                    * Light theme color scheme
                 </AlertDialogDescription>
                 <AlertDialogFooter>
                     <AlertDialogAction onClick={() => setAlertIsOpen(false)}>
