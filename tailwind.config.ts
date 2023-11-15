@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
     darkMode: ["class"],
     content: [
@@ -8,6 +10,11 @@ module.exports = {
         "./src/**/*.{ts,tsx}",
     ],
     theme: {
+        screens: {
+            "fold": {'max': '300px'},
+            "xs": {'min': '420px', 'max': '640px'},
+            ...defaultTheme.screens,
+        },
         fontFamily: {
             'poppins': ['Poppins', 'sans-serif'],
             'montserrat': ['Montserrat', 'sans-serif'],
@@ -20,6 +27,25 @@ module.exports = {
             },
         },
         extend: {
+            // Dynamic height and width will be removed once native support is added in Tailwind 3.4
+            height: {
+                screen: '100dvh',
+            },
+            minHeight: {
+                screen: '100dvh',
+            },
+            maxHeight: {
+                screen: '100dvh',
+            },
+            width: {
+                screen: '100dvw',
+            },
+            minWidth: {
+                screen: '100dvw',
+            },
+            maxWidth: {
+                screen: '100dvw',
+            },
             colors: {
                 ring: "var(--ring)",
                 background: "var(--background)",

@@ -91,17 +91,17 @@ export default function Contact() {
 
     return (
         <section id="contact">
-            <div className="flex flex-col items-center justify-center w-full h-full">
-                <div className="flex flex-col items-center justify-center w-full text-center mb-5">
-                    <h2 className="font-poppins font-[700] text-xl text-primary leading-tight md:text-2xl lg:text-4xl mb-1">Contact Me</h2>
-                    <p className="font-[500] text-secondary leading-tight md:text-lg lg:text-xl">
+            <div className="flex flex-col items-center justify-center w-4/5 h-full sm:w-3/5 md:w-2/5 lg:w-1/3">
+                <div className="flex flex-col items-center justify-center text-center mb-5">
+                    <h2 className="font-poppins font-bold text-2xl text-primary md:text-3xl mb-1">Contact Me</h2>
+                    <p className="font-medium text-secondary leading-tight md:text-lg lg:text-xl">
                         Let&apos;s connect and explore the endless possibilities.
                     </p>
                 </div>
 
-                <div className="flex flex-col items-center justify-center w-1/3 mx-auto">
+                <div className="flex flex-col items-center justify-center w-full">
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col bg-slate-800 rounded-xl p-5 space-y-2 shadow-lg shadow-white/10 w-full">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col bg-slate-800 rounded-xl py-3 px-4 space-y-1.5 shadow-lg shadow-white/10 w-full lg:px-5">
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -175,7 +175,7 @@ export default function Contact() {
                                 )}
                             />
 
-                            <Button className="w-1/4 mx-auto font-semibold" type="submit">
+                            <Button className="w-max mx-auto px-10 font-semibold text-base" type="submit">
                                 Send
                             </Button>
                         </form>

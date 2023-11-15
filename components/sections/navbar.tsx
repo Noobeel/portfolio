@@ -15,9 +15,15 @@ export default function Navbar() {
             const tab = document.getElementById('tab') as HTMLDivElement
             const navLinkRect = navLink.getBoundingClientRect()
             const navListLeftPos = document.getElementById('nav-list')?.getBoundingClientRect().left as number
+            
+            if (window.matchMedia('(max-width: 639px)').matches) {
+                tab.style.left = `${navLinkRect.left - navListLeftPos}px`
+                tab.style.width = `${navLinkRect.width}px`
+            } else {
+                tab.style.left = `${navLinkRect.left - navListLeftPos - 5}px`
+                tab.style.width = `${navLinkRect.width + 10}px`
+            }
 
-            tab.style.left = `${navLinkRect.left - navListLeftPos - 5}px`
-            tab.style.width = `${navLinkRect.width + 10}px`
             tab.style.height = `${navLinkRect.height}px`
 
             if (tab && !tab.classList.contains('visible-tab')) {
@@ -111,27 +117,32 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
-            className='backdrop-blur-md bg-backdrop flex flex-row rounded-full px-5 py-2 w-max h-max mx-auto fixed inset-0 top-3 z-10'
+            className='backdrop-blur-md bg-backdrop flex flex-row rounded-full p-2 w-min h-max mx-auto fixed inset-0 top-3 z-30 fold:px-1 fold:py-0 sm:px-5'
         >
             <ul id="nav-list" className='relative list-none flex justify-center items-center'>
                 {Object.entries(navLinks).map((link, index) => (
                     <li key={index} className='flex z-20'>
-                        {link[0] === 'Home' ? (
-                            <Link className='nav-link' href={link[1]} onClick={ () => { document.getElementById('tab')?.classList.remove('visible-tab') }}>
-                                <Home size={24} />
-                            </Link>
-                        ) :
-                            <Link className='nav-link' href={link[1]} {...(link[0] === 'Résumé' ? { target: '_top' } : {})}>
-                                {link[0]}
-                            </Link>
-                        }
+                        <Link className='nav-link flex justify-center items-center text-[0.813rem] p-2 font-semibold rounded-full fold:px-1.5 fold:py-1.5 fold:text-xs fold:font-normal sm:mx-1 md:text-sm lg:text-[0.9rem] 2xl:text-base'
+                            href={link[1]}
+                            {...link[0] === 'Home' ? (
+                                { onClick: () => { document.getElementById('tab')?.classList.remove('visible-tab') } }
+                            ) :
+                                {...(link[0] === 'Résumé' ? { target: '_top' } : {})}
+                            }
+                        >
+                            { link[0] === 'Home' ? (
+                                <Home className='w-5 h-5 xl:w-6 xl:h-6 fold:w-4 fold:h-4' />
+                            ):
+                                (link[0])
+                            }
+                        </Link>
                     </li>
                 ))}
 
                 <div id="tab" className="absolute z-10 opacity-0 rounded-full backdrop-blur-sm bg-active transition-all ease-in-out" />
+                
+                <DarkModeToggle />
             </ul>
-
-            <DarkModeToggle />
         </motion.nav>
     )
 }
