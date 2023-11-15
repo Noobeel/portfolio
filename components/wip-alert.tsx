@@ -21,7 +21,7 @@ export default function WipAlert() {
 
     return (
         <AlertDialog {...(alertIsOpen ? { open: true } : {})}>
-            <AlertDialogContent>
+            <AlertDialogContent className="w-[95%]">
                 <AlertDialogHeader>
                     <AlertDialogTitle>
                         Work in Progress!
@@ -29,7 +29,7 @@ export default function WipAlert() {
                 </AlertDialogHeader>
                 <AlertDialogDescription>
                     This website is still a work in progress. Currently working on the following: <br />
-                    * Responsive design for different screen sizes <br />
+                    * Responsive layout from About and Projects section <br />
                     * Light theme color scheme
                 </AlertDialogDescription>
                 <AlertDialogFooter>
