@@ -70,7 +70,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Document Search Engine',
-        description: 'A document search engine built using Python, NLTK, and Sklearn. Features three different search algorithms: BM25, Naive Bayes, and SVC text classification to rank documents as well as the Word2Vec model to find enhance search parameters. Searched from a corpus of over 100,000 documents with a file size of 27GB.',
+        description: 'A document search engine built using Python, NLTK, and Sklearn. Features algorithms such as BM25, Naive Bayes, and SVC Classification as well as the Word2Vec model to enhance search parameters and rank documents from a corpus of size 27GB.',
         image: '/images/projects/document-search-engine.png',
         github: 'https://github.com/Noobeel/University-Assignments/tree/master/Search%20Engine',
     },
