@@ -34,35 +34,67 @@ export default function Projects() {
         setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
         if (isTouchDevice) {
-            setIsFocus(true);
+            const handleTouchStart = (e: TouchEvent) => {
+                const touch = e.touches[0];
+                const startX = touch.clientX;
+                const startY = touch.clientY;
+                const projectContainer = document.getElementById('projects-container');
+
+                if (!projectContainer?.contains(touch.target as Node)) return;
+
+                const handleTouchMove = (e: TouchEvent) => {
+                    const touch = e.touches[0];
+                    const diffX = touch.clientX - startX;
+                    const diffY = touch.clientY - startY;
+
+                    if (Math.abs(diffX) > Math.abs(diffY)) {
+                        if (diffX > 0) {
+                            handleLeftArrowClick();
+                        } else {
+                            handleRightArrowClick();
+                        }
+                    }
+
+                    window.removeEventListener('touchmove', handleTouchMove);
+                }
+
+                window.addEventListener('touchmove', handleTouchMove);
+            }
+
+            window.addEventListener('touchstart', handleTouchStart);
+
+            return () => window.removeEventListener('touchstart', handleTouchStart);
         }
     }, [isTouchDevice]);
 
     return (
         <section id="projects" className="overflow-hidden">
             <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
-                <div className="flex items-center relative w-3/5 h-fit">
-                    <AnimatePresence>
-                        {isFocus && (
-                            <motion.div
-                                className="absolute left-2 right-2 flex justify-between z-10"
-                                initial={isTouchDevice ? { opacity: 1 } : { opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onHoverStart={() => setIsFocus(true)}
-                                onHoverEnd={() => isTouchDevice ? null : setIsFocus(false)}
-                            >
-                                <button onClick={handleLeftArrowClick} className="flex items-center justify-center w-12 h-12 bg-background rounded-full shadow-lg focus:outline-none">
-                                    <ChevronLeft className="text-2xl" />
-                                </button>
-                                <button onClick={handleRightArrowClick} className="flex items-center justify-center w-12 h-12 bg-background rounded-full shadow-lg focus:outline-none">
-                                    <ChevronRight className="text-2xl" />
-                                </button>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                <div className="flex items-center relative h-max w-[90%] sm:w-4/5 md:w-4/6 lg:w-3/6 xl:w-2/4">
+                    {!isTouchDevice && (
+                        <AnimatePresence>
+                            {isFocus && (
+                                <motion.div
+                                    className="absolute left-1.5 right-1.5 flex justify-between z-10"
+                                    initial={isTouchDevice ? { opacity: 1 } : { opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onHoverStart={() => setIsFocus(true)}
+                                    onHoverEnd={() => isTouchDevice ? null : setIsFocus(false)}
+                                >
+                                    <button onClick={handleLeftArrowClick} className="flex items-center justify-center w-10 h-10 bg-background rounded-full focus:outline-none">
+                                        <ChevronLeft />
+                                    </button>
+                                    <button onClick={handleRightArrowClick} className="flex items-center justify-center w-10 h-10 bg-background rounded-full focus:outline-none">
+                                        <ChevronRight />
+                                    </button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    )}
 
                     <motion.div
+                        id="projects-container"
                         className="flex flex-nowrap w-full h-full"
                         initial={{ x: 0 }}
                         animate={{ x: -currentProjectIndex * 100 + '%' }}
@@ -72,38 +104,39 @@ export default function Projects() {
                         {projects.map((project, index) => (
                             <motion.div
                                 key={index}
-                                animate={{ opacity: index === currentProjectIndex ? 1 : 0.3, scale: index === currentProjectIndex ? 1 : 0.9 }}
-                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-full bg-slate-800"
+                                animate={
+                                    {
+                                        opacity: index === currentProjectIndex ? 1 : 0.3,
+                                        scale: index === currentProjectIndex ? 1 : (isTouchDevice ? 0.96 : 0.9),
+                                    }
+                                }
+                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-max bg-slate-800"
                             >
-                                <div className="flex justify-center overflow-y-hidden flex-1">
+                                <div className="flex justify-center items-center overflow-y-hidden pt-2">
                                     <Image
                                         src={project.image}
                                         alt={project.title}
-                                        width="0"
-                                        height="0"
-                                        sizes="100vh"
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
                                         priority={true}
-                                        className="object-contain dark:filter dark:brightness-[90%]"
-                                        style={{
-                                            width: '90%',
-                                            height: '100%'
-                                        }}
+                                        className="object-contain dark:filter dark:brightness-[90%] rounded-lg h-auto w-[95%] md:w-[90%] lg:w-[80%]"
                                     />
                                 </div>
 
-                                <div className="flex flex-col self-end w-full px-4 pb-4 rounded-b-lg h-fit">
+                                <div className="flex flex-col w-full p-3 rounded-b-lg h-fit md:w-5/6">
                                     <div className="flex flex-col items-center">
-                                        <h1 className="text-2xl text-primary font-bold">{project.title}</h1>
-                                        <p className="mx-2 text-secondary text-lg">{project.description}</p>
+                                        <h1 className="text-primary font-bold text-xl md:text-2xl">{project.title}</h1>
+                                        <p className="mx-1 text-secondary text-base md:text-lg">{project.description}</p>
                                     </div>
                                     
-                                    <div className="flex flex-row items-center justify-between w-max mt-4 mx-2">
+                                    <div className="flex flex-row items-center justify-between w-max mt-1.5">
                                         {project.github && (
                                             <TooltipProvider delayDuration={0}>
                                                 <Tooltip>
                                                     <TooltipTrigger tabIndex={-1}>
-                                                        <a tabIndex={-1} href={project.github} target="_blank" rel="noopener noreferrer" className="mr-3 text-secondary hover:text-primary">
-                                                            <i className="devicon-github-plain text-4xl" />
+                                                        <a tabIndex={-1} href={project.github} target="_blank" rel="noopener noreferrer" className="mr-2 text-secondary hover:text-primary lg:mr-3">
+                                                            <i className="devicon-github-plain text-3xl lg:text-4xl" />
                                                         </a>
                                                     </TooltipTrigger>
                                                     <TooltipContent side='top'>
@@ -117,7 +150,7 @@ export default function Projects() {
                                                 <Tooltip>
                                                     <TooltipTrigger tabIndex={-1}>
                                                         <a tabIndex={-1} href={project.demo} target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary">
-                                                            <Globe className="w-[2.25rem] h-[2.25rem]" />
+                                                            <Globe className="w-[1.875rem] h-[1.875rem] lg:w-[2.25rem] lg:h-[2.25rem]" />
                                                         </a>
                                                     </TooltipTrigger>
                                                     <TooltipContent side='top'>
