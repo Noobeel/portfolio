@@ -29,7 +29,7 @@ export default function WipAlert() {
                 </AlertDialogHeader>
                 <AlertDialogDescription>
                     This website is still a work in progress. Currently working on the following: <br />
-                    * Responsive layout from About and Projects section <br />
+                    * Responsive layout for About and Skills section <br />
                     * Light theme color scheme
                 </AlertDialogDescription>
                 <AlertDialogFooter>
