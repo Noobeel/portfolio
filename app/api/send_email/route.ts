@@ -13,19 +13,28 @@ export async function POST(request: Request) {
             from_email: email,
             message: message,
         },
-    }
+    };
 
-    const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
+    const response = await fetch(
+        "https://api.emailjs.com/api/v1.0/email/send",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }
+    );
 
     if (response.status === 200) {
-        return NextResponse.json({ success: true }, { status: response.status });
+        return NextResponse.json(
+            { success: true },
+            { status: response.status }
+        );
     } else {
-        return NextResponse.json({ success: false }, { status: response.status });
+        return NextResponse.json(
+            { success: false },
+            { status: response.status }
+        );
     }
 }

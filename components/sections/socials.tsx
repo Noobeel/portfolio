@@ -1,42 +1,40 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { ChevronLeft } from 'lucide-react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { socials } from '@/data/constants';
+} from "@/components/ui/tooltip";
+import { ChevronLeft } from "lucide-react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { socials } from "@/data/constants";
 
 export default function Socials() {
     const [isTouchDevice, setIsTouchDevice] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const { scrollY } = useScroll();
-    
-    useMotionValueEvent(
-        scrollY,
-        "change",
-        (latest) => {
-            if (isTouchDevice) {
-                const heroHeight = document.getElementById('hero')?.getBoundingClientRect().height;
 
-                if (heroHeight && (latest > heroHeight * 0.3)) {
-                    setIsHidden(true);
-                } else {
-                    setIsHidden(false);
-                }
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        if (isTouchDevice) {
+            const heroHeight = document
+                .getElementById("hero")
+                ?.getBoundingClientRect().height;
+
+            if (heroHeight && latest > heroHeight * 0.3) {
+                setIsHidden(true);
+            } else {
+                setIsHidden(false);
             }
-        },
-    );
+        }
+    });
 
     useEffect(() => {
-        setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        setIsTouchDevice(
+            "ontouchstart" in window || navigator.maxTouchPoints > 0
+        );
     }, [isTouchDevice]);
-
-
 
     return (
         <>
@@ -87,20 +85,27 @@ export default function Socials() {
                                         href={social.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`flex items-center justify-center w-8 h-8 m-2 transition-all duration-300 transform rounded-full ${!isTouchDevice && 'hover:scale-110 hover:bg-gray-700'} sm:w-10 sm:h-10 sm:p-2`}
+                                        className={`flex items-center justify-center w-8 h-8 m-2 transition-all duration-300 transform rounded-full ${
+                                            !isTouchDevice &&
+                                            "hover:scale-110 hover:bg-gray-700"
+                                        } sm:w-10 sm:h-10 sm:p-2`}
                                         aria-label={social.name}
                                     >
                                         {social.icon}
                                     </a>
                                 </TooltipTrigger>
-                                <TooltipContent side='left' className='bg-background' hideWhenDetached={true}>
+                                <TooltipContent
+                                    side="left"
+                                    className="bg-background"
+                                    hideWhenDetached={true}
+                                >
                                     <p>{social.name}</p>
                                 </TooltipContent>
                             </Tooltip>
-                    </TooltipProvider>
+                        </TooltipProvider>
                     ))}
                 </div>
             </motion.div>
         </>
-    )
+    );
 }

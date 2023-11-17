@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
     AlertDialog,
@@ -7,30 +7,26 @@ import {
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
-    AlertDialogTitle
-} from "@/components/ui/alert-dialog"
-import { useEffect, useState } from "react"
-  
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useEffect, useState } from "react";
 
 export default function WipAlert() {
-    const [alertIsOpen, setAlertIsOpen] = useState(false)
+    const [alertIsOpen, setAlertIsOpen] = useState(false);
 
     useEffect(() => {
-        setAlertIsOpen(true)
-    }, [])
+        setAlertIsOpen(true);
+    }, []);
 
     return (
         <AlertDialog {...(alertIsOpen ? { open: true } : {})}>
             <AlertDialogContent className="w-[95%]">
                 <AlertDialogHeader>
-                    <AlertDialogTitle>
-                        Work in Progress!
-                    </AlertDialogTitle>
+                    <AlertDialogTitle>Work in Progress!</AlertDialogTitle>
                 </AlertDialogHeader>
                 <AlertDialogDescription>
-                    This website is still a work in progress. Currently working on the following: <br />
-                    * Responsive layout for About and Skills section <br />
-                    * Light theme color scheme
+                    This website is still a work in progress. Currently working
+                    on the following: <br />* Light theme color scheme
                 </AlertDialogDescription>
                 <AlertDialogFooter>
                     <AlertDialogAction onClick={() => setAlertIsOpen(false)}>
@@ -39,5 +35,5 @@ export default function WipAlert() {
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
-    )
+    );
 }

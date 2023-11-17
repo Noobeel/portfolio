@@ -1,4 +1,4 @@
-import Skills from "@/components/sections/skills"
+import Skills from "@/components/sections/skills";
 
 export default function About() {
     return (
@@ -8,13 +8,38 @@ export default function About() {
                     <h1 className="font-poppins font-bold text-2xl text-center text-primary lg:text-left md:text-3xl mb-2">
                         About Me
                     </h1>
-                    
+
                     <div className="text-secondary text-lg leading-tight text-justify md:text-xl xl:text-[1.35rem] 2xl:text-[1.45rem] 2xl:leading-8">
                         <p>
-                            I&apos;m a Software Engineer based in Toronto, Canada with a passion for developing software and finding solutions to real-world problems. I find immense joy in the process of transforming ideas into tangible, functional software, constantly pushing the boundaries of what&apos;s possible. The fast-paced nature of technology excites me, and I am always on the lookout for opportunities to explore and implement new tools and methodologies.
+                            I&apos;m a Software Engineer based in Toronto,
+                            Canada with a passion for developing software and
+                            finding solutions to real-world problems. I find
+                            immense joy in the process of transforming ideas
+                            into tangible, functional software, constantly
+                            pushing the boundaries of what&apos;s possible. The
+                            fast-paced nature of technology excites me, and I am
+                            always on the lookout for opportunities to explore
+                            and implement new tools and methodologies.
                             <br />
                             <br />
-                            Having recently graduated from <a className="underline" rel="noopener noreferrer" target="_blank" href="https://torontomu.ca/">Toronto Metropolitan University</a> with a degree in Computer Science, I am looking to start my career in the tech industry. My aspiration is not only to excel in my individual pursuits but also to contribute meaningfully to the broader tech ecosystem. As I take my first steps into the professional arena, I am excited about the prospect of connecting with like-minded individuals, exchanging ideas, and contributing to the innovation that drives our ever-evolving digital landscape.
+                            Having recently graduated from{" "}
+                            <a
+                                className="underline"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                href="https://torontomu.ca/"
+                            >
+                                Toronto Metropolitan University
+                            </a>{" "}
+                            with a degree in Computer Science, I am looking to
+                            start my career in the tech industry. My aspiration
+                            is not only to excel in my individual pursuits but
+                            also to contribute meaningfully to the broader tech
+                            ecosystem. As I take my first steps into the
+                            professional arena, I am excited about the prospect
+                            of connecting with like-minded individuals,
+                            exchanging ideas, and contributing to the innovation
+                            that drives our ever-evolving digital landscape.
                         </p>
                     </div>
                 </div>
@@ -26,5 +51,5 @@ export default function About() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
