@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Hero() {
     return (
-        <section id="hero">
+        <section id="hero" className='min-h-screen'>
             <div className='flex flex-col items-center justify-center w-full lg:flex-row'>
                 <div className="w-2/3 xs:w-3/5 flex items-center justify-center md:w-1/2"> 
                     <Image src="/images/portrait.jpg"

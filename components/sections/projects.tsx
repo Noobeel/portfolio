@@ -68,7 +68,7 @@ export default function Projects() {
     }, [isTouchDevice]);
 
     return (
-        <section id="projects" className="overflow-hidden">
+        <section id="projects" className="overflow-hidden py-10 lg:py-0">
             <MotionConfig transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}>
                 <div className="flex items-center relative h-max w-[90%] sm:w-4/5 md:w-4/6 lg:w-3/6 xl:w-2/4">
                     {!isTouchDevice && (
@@ -110,7 +110,7 @@ export default function Projects() {
                                         scale: index === currentProjectIndex ? 1 : (isTouchDevice ? 0.96 : 0.9),
                                     }
                                 }
-                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-max bg-slate-800"
+                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-max bg-slate-800 shadow-lg shadow-white/10"
                             >
                                 <div className="flex justify-center items-center overflow-y-hidden pt-2">
                                     <Image
@@ -129,7 +129,7 @@ export default function Projects() {
                                         <h1 className="text-primary font-bold text-xl md:text-2xl">{project.title}</h1>
                                         <p className="mx-1 text-secondary text-base md:text-lg">{project.description}</p>
                                     </div>
-                                    
+
                                     <div className="flex flex-row items-center justify-between w-max mt-1.5">
                                         {project.github && (
                                             <TooltipProvider delayDuration={0}>
@@ -167,16 +167,16 @@ export default function Projects() {
 
                     <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-5">
                         <div className="flex gap-3 px-3 py-2 bg-background rounded-full opacity-80">
-                        {[...projects].map((_, index) => (
-                            <button key={index} onClick={() => setCurrentProjectIndex(index)}>
-                                <div
-                                    className={
-                                        `w-2 h-2 rounded-full
+                            {[...projects].map((_, index) => (
+                                <button key={index} onClick={() => setCurrentProjectIndex(index)}>
+                                    <div
+                                        className={
+                                            `w-2 h-2 rounded-full
                                         ${index === currentProjectIndex ? "bg-primary" : "bg-zinc-600"}`
-                                    }
-                                />
-                            </button>
-                        ))}
+                                        }
+                                    />
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>

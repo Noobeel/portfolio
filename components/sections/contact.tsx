@@ -90,7 +90,7 @@ export default function Contact() {
     }
 
     return (
-        <section id="contact">
+        <section id="contact" className="py-10 mb-10 lg:py-0 lg:mb-0">
             <div className="flex flex-col items-center justify-center w-4/5 h-full sm:w-3/5 md:w-2/5 lg:w-1/3">
                 <div className="flex flex-col items-center justify-center text-center mb-5">
                     <h2 className="font-poppins font-bold text-2xl text-primary md:text-3xl mb-1">Contact Me</h2>

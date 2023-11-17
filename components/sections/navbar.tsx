@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { Home } from "lucide-react"
+import { motion } from 'framer-motion'
 import { navLinks } from '@/data/constants'
 import DarkModeToggle from '@/components/theme-toggle'
-import { motion } from 'framer-motion'
 
 const windowEvents = ['hashchange', 'resize']
 
@@ -15,7 +15,7 @@ export default function Navbar() {
             const tab = document.getElementById('tab') as HTMLDivElement
             const navLinkRect = navLink.getBoundingClientRect()
             const navListLeftPos = document.getElementById('nav-list')?.getBoundingClientRect().left as number
-            
+
             if (window.matchMedia('(max-width: 639px)').matches) {
                 tab.style.left = `${navLinkRect.left - navListLeftPos}px`
                 tab.style.width = `${navLinkRect.width}px`
@@ -78,27 +78,27 @@ export default function Navbar() {
     }
 
     useEffect(() => {
-        const changeTabPositionOnWindowEvent = () => {        
+        const changeTabPositionOnWindowEvent = () => {
             document.getElementById('tab')?.classList.remove('visible-tab')
-    
+
             setTimeout(() => {
                 if (window.location.pathname === '/resume') {
                     moveTabPosition(document.querySelector(`.nav-link[href="/resume"]`) as HTMLAnchorElement)
                 } else {
                     const hash = window.location.hash
-                    
+
                     const element = document.querySelector(hash || '#hero') as HTMLElement
-    
+
                     document.body.style
                     element?.scrollIntoView({ behavior: 'instant' })
-    
+
                     if (!hash) return
-    
+
                     moveTabPosition(document.querySelector(`.nav-link[href="/${hash}"]`) as HTMLAnchorElement)
                 }
             }, 300)
         }
-    
+
         windowEvents.forEach(event => {
             window.addEventListener(event, changeTabPositionOnWindowEvent)
         })
@@ -122,17 +122,17 @@ export default function Navbar() {
             <ul id="nav-list" className='relative list-none flex justify-center items-center'>
                 {Object.entries(navLinks).map((link, index) => (
                     <li key={index} className='flex z-20'>
-                        <Link className='nav-link flex justify-center items-center text-[0.813rem] p-2 font-semibold rounded-full fold:px-1.5 fold:py-1.5 fold:text-xs fold:font-normal sm:mx-1 md:text-sm lg:text-[0.9rem] 2xl:text-base'
+                        <Link className='nav-link flex justify-center items-center text-[0.82rem] p-2 font-semibold rounded-full fold:px-1.5 fold:py-1.5 fold:text-xs fold:font-normal sm:mx-1 md:text-sm lg:text-[0.9rem] 2xl:text-base'
                             href={link[1]}
                             {...link[0] === 'Home' ? (
                                 { onClick: () => { document.getElementById('tab')?.classList.remove('visible-tab') } }
                             ) :
-                                {...(link[0] === 'Résumé' ? { target: '_top' } : {})}
+                                { ...(link[0] === 'Résumé' ? { target: '_top' } : {}) }
                             }
                         >
-                            { link[0] === 'Home' ? (
+                            {link[0] === 'Home' ? (
                                 <Home className='w-5 h-5 xl:w-6 xl:h-6 fold:w-4 fold:h-4' />
-                            ):
+                            ) :
                                 (link[0])
                             }
                         </Link>
@@ -140,7 +140,7 @@ export default function Navbar() {
                 ))}
 
                 <div id="tab" className="absolute z-10 opacity-0 rounded-full backdrop-blur-sm bg-active transition-all ease-in-out" />
-                
+
                 <DarkModeToggle />
             </ul>
         </motion.nav>

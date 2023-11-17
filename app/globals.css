@@ -4,49 +4,49 @@
 
 @layer base {
     :root {
-        --background: #F5F5F5;
+        --background: #f5f5f5;
         --foreground: #000000;
-        
-        --card: #FFFFFF;
+
+        --card: #ffffff;
         --card-foreground: #020817;
 
-        --popover: #FFFFFF;
+        --popover: #ffffff;
         --popover-foreground: #020817;
 
-        --primary: #0F172A;
-        --primary-foreground: #F8FAFC;
+        --primary: #0f172a;
+        --primary-foreground: #f8fafc;
 
-        --secondary: #F1F5F9;
-        --secondary-foreground: #0F172A;
+        --secondary: #f1f5f9;
+        --secondary-foreground: #0f172a;
 
-        --muted: #F1F5F9;
-        --muted-foreground: #64748B;
+        --muted: #f1f5f9;
+        --muted-foreground: #64748b;
 
-        --accent: #F1F5F9;
-        --accent-foreground: #0F172A;
+        --accent: #f1f5f9;
+        --accent-foreground: #0f172a;
 
-        --destructive: #EF4444;
-        --destructive-foreground: #F8FAFC;
+        --destructive: #ef4444;
+        --destructive-foreground: #f8fafc;
 
-        --border: #E2E8F0;
-        --input: #E2E8F0;
+        --border: #e2e8f0;
+        --input: #e2e8f0;
         --ring: #020817;
 
         --radius: 0.5rem;
     }
 
     .dark {
-        --background: #020f1E;
-        --primary: #BDCFE3;
-        --secondary: #9BB0C7;
+        --background: #020f1e;
+        --primary: #bdcfe3;
+        --secondary: #9bb0c7;
 
         --active: #041324;
-        --backdrop: #FFFFFF1A;
+        --backdrop: #ffffff1a;
 
-        --popover: #020f1E;
-        --muted: #94A3B8;
-        --destructive: #CA2140;
-        --ring: #CBD5E1;
+        --popover: #020f1e;
+        --muted: #94a3b8;
+        --destructive: #ca2140;
+        --ring: #cbd5e1;
     }
 
     * {
@@ -54,11 +54,11 @@
     }
 
     section {
-        @apply flex flex-col items-center justify-center w-full min-h-screen relative;
+        @apply flex flex-col items-center justify-center relative w-full lg:min-h-screen lg:snap-start;
     }
 
     .skills-card {
-        @apply grid grid-cols-3 grid-flow-row justify-items-center mx-auto p-4 rounded-lg bg-slate-800 text-primary;
+        @apply grid grid-cols-3 grid-flow-row justify-items-center p-1 rounded-lg w-full max-w-screen bg-slate-800 text-primary md:p-4;
     }
 }
 
