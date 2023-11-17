@@ -29,13 +29,13 @@ module.exports = {
         extend: {
             // Dynamic height and width will be removed once native support is added in Tailwind 3.4
             height: {
-                screen: '100dvh',
+                screen: '100svh',
             },
             minHeight: {
-                screen: '100dvh',
+                screen: '100svh',
             },
             maxHeight: {
-                screen: '100dvh',
+                screen: '100svh',
             },
             width: {
                 screen: '100dvw',
