@@ -9,7 +9,7 @@ export default function About() {
                         About Me
                     </h1>
 
-                    <div className="text-secondary text-lg leading-tight text-justify md:text-xl xl:text-[1.35rem] 2xl:text-[1.45rem] 2xl:leading-8">
+                    <div className="text-secondary text-lg leading-tight md:text-xl xl:text-[1.35rem] 2xl:text-[1.45rem] 2xl:leading-8">
                         <p>
                             I&apos;m a Software Engineer based in Toronto,
                             Canada with a passion for developing software and
