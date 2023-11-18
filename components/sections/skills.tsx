@@ -24,7 +24,7 @@ export default function Skills() {
             {Object.keys(skills).map((skill_type, index) => (
                 <TabsContent
                     value={skill_type.toLowerCase()}
-                    className="data-[state=active]:skills-card shadow-lg shadow-white/10"
+                    className="data-[state=active]:skills-card shadow-lg dark:shadow-white/10"
                     key={index}
                 >
                     {skills[skill_type].map((skill, index) => (
@@ -39,7 +39,7 @@ export default function Skills() {
                                 height={0}
                                 className={`w-10 h-10 sm:w-12 sm:h-12 ${
                                     skill.name == "Django" &&
-                                    "mix-blend-plus-lighter"
+                                    "dark:mix-blend-plus-lighter"
                                 }`}
                             />
                             <p className="text-center">{skill.name}</p>

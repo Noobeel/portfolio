@@ -112,7 +112,7 @@ export default function Contact() {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="flex flex-col bg-slate-800 rounded-xl py-3 px-4 space-y-1.5 shadow-lg shadow-white/10 w-full lg:px-5"
+                            className="flex flex-col rounded-xl py-3 px-4 space-y-1.5 shadow-lg dark:shadow-white/10 w-full lg:px-5 bg-card"
                         >
                             <FormField
                                 control={form.control}
@@ -123,6 +123,7 @@ export default function Contact() {
                                         <FormControl>
                                             <Input
                                                 placeholder="John Doe"
+                                                autoComplete="name"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -140,6 +141,7 @@ export default function Contact() {
                                         <FormControl>
                                             <Input
                                                 placeholder="john.doe@email.com"
+                                                autoComplete="email"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -202,7 +204,7 @@ export default function Contact() {
                                         </FormControl>
                                         <FormDescription
                                             id="message-char-count-container"
-                                            className="mt-1 mb-2"
+                                            className="mt-1 mb-2 text-muted"
                                         >
                                             <span id="message-char-count">
                                                 0

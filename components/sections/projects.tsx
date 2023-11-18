@@ -130,7 +130,7 @@ export default function Projects() {
                                 key={index}
                                 animate={{
                                     opacity:
-                                        index === currentProjectIndex ? 1 : 0.3,
+                                        index === currentProjectIndex ? 1 : 0.4,
                                     scale:
                                         index === currentProjectIndex
                                             ? 1
@@ -138,7 +138,7 @@ export default function Projects() {
                                             ? 0.96
                                             : 0.9,
                                 }}
-                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-max bg-slate-800 shadow-lg shadow-white/10"
+                                className="flex flex-col items-center justify-center rounded-lg min-w-full min-h-max shadow-lg dark:shadow-white/10 bg-card"
                             >
                                 <div className="flex justify-center items-center overflow-y-hidden pt-2">
                                     <Image
@@ -148,7 +148,7 @@ export default function Projects() {
                                         height={0}
                                         sizes="100vw"
                                         priority={true}
-                                        className="object-contain dark:filter dark:brightness-[90%] rounded-lg h-auto w-[95%] md:w-[90%] lg:w-[80%]"
+                                        className="object-contain filter brightness-[90%] rounded-lg h-auto w-[95%] md:w-[90%] lg:w-[80%]"
                                     />
                                 </div>
 
@@ -229,7 +229,7 @@ export default function Projects() {
                                         ${
                                             index === currentProjectIndex
                                                 ? "bg-primary"
-                                                : "bg-zinc-600"
+                                                : "bg-zinc-400 dark:bg-zinc-600"
                                         }`}
                                     />
                                 </button>

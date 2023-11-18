@@ -48,6 +48,7 @@ module.exports = {
             },
             colors: {
                 ring: "var(--ring)",
+                card: "var(--card)",
                 background: "var(--background)",
                 backdrop: "var(--backdrop)",
                 active: "var(--active)",
@@ -83,7 +84,7 @@ module.exports = {
                 },
                 "char-limit-reached": {
                     "0%, 100%": { transform: "scale(1)" },
-                    "50%": { transform: "scale(1.05)" },
+                    "50%": { transform: "scale(1.025)" },
                 },
             },
             animation: {
