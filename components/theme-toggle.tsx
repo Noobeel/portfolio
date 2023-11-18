@@ -21,7 +21,7 @@ export default function DarkModeToggle() {
         <Button
             variant="outline"
             size="icon"
-            className="bg-transparent hover:bg-transparent w-max h-max p-2 fold:px-1"
+            className="bg-transparent hover:bg-transparent w-max h-max p-2 sm:mx-1 fold:px-1.5"
             id="theme-toggle"
             onClick={handleChangeTheme}
         >
