@@ -153,7 +153,7 @@ export default function Navbar() {
                 {Object.entries(navLinks).map((link, index) => (
                     <li key={index} className="flex z-20">
                         <Link
-                            className="nav-link flex justify-center items-center text-[0.82rem] p-2 font-semibold rounded-full fold:px-1.5 fold:py-1.5 fold:text-xs fold:font-normal sm:mx-1 md:text-sm lg:text-[0.9rem] 2xl:text-base"
+                            className="nav-link flex justify-center items-center text-[0.82rem] p-2 font-semibold rounded-full fold:p-1.5 fold:text-xs fold:font-normal sm:mx-1 md:text-sm lg:text-[0.9rem] 2xl:text-base"
                             href={link[1]}
                             {...(link[0] === "Home"
                                 ? {
