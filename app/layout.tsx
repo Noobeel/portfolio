@@ -36,13 +36,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html
-            lang="en"
-            className="lg:snap-y lg:snap-mandatory"
-            suppressHydrationWarning
-        >
+        <html lang="en" suppressHydrationWarning>
             <body
-                className={`${poppins.variable} font-montserrat bg-background text-primary min-h-screen max-w-screen overflow-x-hidden`}
+                className={`${poppins.variable} font-montserrat bg-background text-primary min-h-screen max-w-screen overflow-x-hidden lg:snap-y lg:snap-mandatory`}
             >
                 <ThemeProvider
                     attribute="class"
