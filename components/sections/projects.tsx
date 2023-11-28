@@ -14,9 +14,10 @@ import { motion, MotionConfig, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Projects() {
+    const [isFocus, setIsFocus] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const [isTouchDevice, setIsTouchDevice] = useState(false);
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-    const [isFocus, setIsFocus] = useState(false);
 
     const handleLeftArrowClick = () => {
         setCurrentProjectIndex((previousProjectIndex) =>
@@ -35,6 +36,12 @@ export default function Projects() {
     };
 
     useEffect(() => {
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+        )
+            ? setIsMobile(true)
+            : setIsMobile(false);
+
         setIsTouchDevice(
             "ontouchstart" in window || navigator.maxTouchPoints > 0
         );
@@ -81,22 +88,16 @@ export default function Projects() {
                 transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
             >
                 <div className="flex items-center relative h-max w-[90%] sm:w-4/5 md:w-4/6 lg:w-3/6 xl:w-2/4">
-                    {!isTouchDevice && (
+                    {!isMobile && (
                         <AnimatePresence>
                             {isFocus && (
                                 <motion.div
                                     className="absolute left-1.5 right-1.5 flex justify-between z-10"
-                                    initial={
-                                        isTouchDevice
-                                            ? { opacity: 1 }
-                                            : { opacity: 0 }
-                                    }
+                                    initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     onHoverStart={() => setIsFocus(true)}
-                                    onHoverEnd={() =>
-                                        isTouchDevice ? null : setIsFocus(false)
-                                    }
+                                    onHoverEnd={() => setIsFocus(false)}
                                 >
                                     <button
                                         onClick={handleLeftArrowClick}
@@ -121,9 +122,7 @@ export default function Projects() {
                         initial={{ x: 0 }}
                         animate={{ x: -currentProjectIndex * 100 + "%" }}
                         onHoverStart={() => setIsFocus(true)}
-                        onHoverEnd={() =>
-                            isTouchDevice ? null : setIsFocus(false)
-                        }
+                        onHoverEnd={() => setIsFocus(false)}
                     >
                         {projects.map((project, index) => (
                             <motion.div
