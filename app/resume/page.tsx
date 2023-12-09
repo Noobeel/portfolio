@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Resume",
+};
+
 export default function Resume() {
     return (
         <div className="w-screen h-screen flex justify-center items-center">

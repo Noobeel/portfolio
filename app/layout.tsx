@@ -26,8 +26,18 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-    title: "Nabeel Asim - Portfolio",
-    description: "A portfolio website for showcasing my projects and skills",
+    authors: [{ name: "Nabeel Asim" }],
+    creator: "Nabeel Asim",
+    title: {
+        template: "Nabeel Asim - %s",
+        default: "Nabeel Asim - Portfolio",
+    },
+    description:
+        "A portfolio website for showcasing my projects and skills. Built with Next.js, TypeScript, TailwindCSS, and Shadcn UI.",
+    referrer: "origin",
+    verification: {
+        google: "A3r4pybo8cM9nV9Z5d5rOVBPB24qDJYtHJipnQezbn4",
+    },
 };
 
 export default function RootLayout({
@@ -36,7 +46,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="lg:landscape:snap-y lg:landscape:snap-mandatory" suppressHydrationWarning>
+        <html
+            lang="en"
+            className="lg:landscape:snap-y lg:landscape:snap-mandatory"
+            suppressHydrationWarning
+        >
             <body
                 className={`${poppins.variable} font-montserrat bg-background text-primary min-h-screen max-w-screen overflow-x-hidden`}
             >
