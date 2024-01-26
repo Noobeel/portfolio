@@ -2,7 +2,7 @@ import "./globals.css";
 import "@/public/devicon.min.css";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
-import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Montserrat, Poppins } from "next/font/google";
 import { Navbar, Socials } from "@/components/sections";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -59,7 +59,7 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                 >
-                    <Analytics />
+                    <SpeedInsights />
                     <Toaster />
                     <Navbar />
                     <Socials />
