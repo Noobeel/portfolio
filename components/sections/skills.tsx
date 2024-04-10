@@ -33,7 +33,7 @@ export default function Skills() {
                             key={index}
                         >
                             <Image
-                                src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.iconPath}.svg`}
+                                src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${skill.iconPath}.svg`}
                                 alt={skill.name}
                                 width={0}
                                 height={0}

@@ -147,8 +147,8 @@ export const skills: { [key: string]: Skill[] } = {
             iconPath: "django/django-plain",
         },
         {
-            name: "Tailwind CSS",
-            iconPath: "tailwindcss/tailwindcss-plain",
+            name: "TailwindCSS",
+            iconPath: "tailwindcss/tailwindcss-original",
         },
     ],
     Tools: [
@@ -165,7 +165,7 @@ export const skills: { [key: string]: Skill[] } = {
             iconPath: "docker/docker-original",
         },
         {
-            name: "Atlassian JIRA",
+            name: "Atlassian Jira",
             iconPath: "jira/jira-original",
         },
         {
