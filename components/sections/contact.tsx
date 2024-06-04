@@ -51,7 +51,7 @@ export default function Contact() {
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { name, email, message } = values;
 
-        fetch("/api/send_email", {
+        fetch("/api/send/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
