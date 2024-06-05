@@ -4,7 +4,7 @@ export default function About() {
     return (
         <section id="about" className="py-10 lg:p-10">
             <div className="grid grid-cols-1 lg:auto-rows-fr lg:grid-cols-[1fr,0.5px,1fr] xl:grid-cols-[1fr,0.5px,0.75fr]">
-                <div className="flex flex-col px-20 flex-1 my-auto lg:px-10">
+                <div className="flex flex-col px-14 flex-1 my-auto md:px-16 lg:px-10">
                     <h1 className="font-poppins font-bold text-2xl text-center text-primary lg:text-left md:text-3xl mb-2">
                         About Me
                     </h1>
