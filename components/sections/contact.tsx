@@ -19,6 +19,9 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
+
 const formSchema = z.object({
     name: z.string().min(2, {
         message: "Name is required and must be at least 2 characters.",
@@ -38,6 +41,7 @@ const formSchema = z.object({
 
 export default function Contact() {
     const { toast } = useToast();
+    const [formLoading, setFormLoading] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -49,6 +53,8 @@ export default function Contact() {
     });
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+        setFormLoading(true);
+
         const { name, email, message } = values;
 
         fetch("/api/send/", {
@@ -57,42 +63,46 @@ export default function Contact() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ name, email, message }),
-        }).then((res) => {
-            if (res.status === 200) {
-                form.reset();
-                const charCountEl =
-                    document.getElementById("message-char-count");
-                const charCountContainerEl = document.getElementById(
-                    "message-char-count-container"
-                );
-                if (charCountEl && charCountContainerEl) {
-                    if (
-                        charCountContainerEl.classList.contains(
-                            "char-limit-reached"
-                        )
-                    ) {
-                        charCountContainerEl.classList.remove(
-                            "char-limit-reached"
-                        );
+        })
+            .then((res) => {
+                if (res.status === 200) {
+                    form.reset();
+                    const charCountEl =
+                        document.getElementById("message-char-count");
+                    const charCountContainerEl = document.getElementById(
+                        "message-char-count-container"
+                    );
+                    if (charCountEl && charCountContainerEl) {
+                        if (
+                            charCountContainerEl.classList.contains(
+                                "char-limit-reached"
+                            )
+                        ) {
+                            charCountContainerEl.classList.remove(
+                                "char-limit-reached"
+                            );
+                        }
+
+                        charCountContainerEl.classList.add("text-muted");
+                        charCountEl.textContent = "0";
                     }
 
-                    charCountContainerEl.classList.add("text-muted");
-                    charCountEl.textContent = "0";
+                    toast({
+                        description: "Your message has been sent successfully.",
+                        duration: 5000,
+                    });
+                } else {
+                    toast({
+                        variant: "destructive",
+                        description:
+                            "Oops! Something went wrong while sending your message. Please try again later.",
+                        duration: 5000,
+                    });
                 }
-
-                toast({
-                    description: "Your message has been sent successfully.",
-                    duration: 5000,
-                });
-            } else {
-                toast({
-                    variant: "destructive",
-                    description:
-                        "Oops! Something went wrong while sending your message. Please try again later.",
-                    duration: 5000,
-                });
-            }
-        });
+            })
+            .finally(() => {
+                setFormLoading(false);
+            });
     }
 
     return (
@@ -216,12 +226,21 @@ export default function Contact() {
                                 )}
                             />
 
-                            <Button
-                                className="w-max mx-auto px-10 font-semibold text-base"
-                                type="submit"
-                            >
-                                Send
-                            </Button>
+                            {formLoading ? (
+                                <Button
+                                    className="w-max mx-auto px-10 font-semibold text-base"
+                                    disabled
+                                >
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                </Button>
+                            ) : (
+                                <Button
+                                    className="w-max mx-auto px-10 font-semibold text-base"
+                                    type="submit"
+                                >
+                                    Send
+                                </Button>
+                            )}
                         </form>
                     </Form>
                 </div>
