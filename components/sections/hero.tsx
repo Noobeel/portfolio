@@ -6,7 +6,7 @@ export default function Hero() {
             <div className="flex flex-col items-center justify-center w-full lg:flex-row">
                 <div className="w-2/3 xs:w-3/5 flex items-center justify-center md:w-1/2">
                     <Image
-                        src="/images/portrait.jpg"
+                        src="/images/portrait.webp"
                         alt="Picture of the author"
                         width={0}
                         height={0}

@@ -59,7 +59,7 @@ export const projects: Project[] = [
         title: "Portfolio Website",
         description:
             "A portfolio website built using TypeScript, Next.js, Tailwind CSS. Features ShadCN UI for stunning UI components and Framer Motion for smooth animations.",
-        image: "/images/projects/portfolio.png",
+        image: "/images/projects/portfolio.webp",
         github: "https://github.com/Noobeel/portfolio",
         demo: "https://nabeelasim.net",
     },
@@ -67,21 +67,21 @@ export const projects: Project[] = [
         title: "Project Task Management Tool",
         description:
             "A project task management tool built using Python, TypeScript, React, FastAPI, MongoDB, and Firebase. Features a REST API, user authentication, and a Kanban board.",
-        image: "/images/projects/project-task-management-tool.png",
+        image: "/images/projects/project-task-management-tool.webp",
         github: "https://github.com/Noobeel/University-Assignments/tree/master/Project%20Task%20Management%20Tool",
     },
     {
         title: "Document Search Engine",
         description:
             "A document search engine built using Python, NLTK, and Sklearn. Features algorithms such as BM25, Naive Bayes, and SVC Classification as well as the Word2Vec model to enhance search parameters and rank documents from a corpus of size 27GB.",
-        image: "/images/projects/document-search-engine.png",
+        image: "/images/projects/document-search-engine.webp",
         github: "https://github.com/Noobeel/University-Assignments/tree/master/Search%20Engine",
     },
     {
         title: "Cypress Web Application",
         description:
             "A web application built using Python, Django, Google Maps API, and Bootstrap. Features a web interface for city residents to report issues like fallen trees, potholes, and garbage for the city to resolve.",
-        image: "/images/projects/cypress-web-application.png",
+        image: "/images/projects/cypress-web-application.webp",
         github: "https://github.com/Noobeel/University-Assignments/tree/master/Cypress%20Web%20App",
     },
 ];
