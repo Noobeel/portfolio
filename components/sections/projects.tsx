@@ -147,7 +147,7 @@ export default function Projects() {
                                         height={0}
                                         sizes="100vw"
                                         priority={true}
-                                        className="object-contain filter brightness-[90%] rounded-lg h-auto w-[95%] md:w-[90%] lg:w-[80%]"
+                                        className="object-contain filter brightness-[90%] rounded-lg shadow-slate-900 shadow-md mb-2 h-auto w-[95%] md:w-[90%] lg:w-[80%]"
                                     />
                                 </div>
 
